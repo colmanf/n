@@ -1,0 +1,90 @@
+#include<iostream>
+using namespace std;
+ struct  node
+{
+ float AT;//arrival time
+ float ET;//execution time
+ float WT;//Waiting time
+ float TAT;//Turn around time
+ char sym[5];	
+};
+void input(node *, int );
+void sort(node *,int);
+float calc(node *,int);
+void display(node *,int,float);
+int main()
+{
+	int n;
+	float avgTAT;
+	cout<<"Enter number of the process=";
+    cin>>n;
+    node pr[n];
+    input(pr,n);
+    sort(pr,n);
+	avgTAT=calc(pr,n);
+	display(pr,n,avgTAT);  
+    return 0;	
+}
+void input(node *pr,int n)
+{
+	int i;
+	for(i=0;i<n;i++)
+	{   
+	    pr[i].AT=0;
+		cout<<"Execution time for Process "<<i+1<<"=";
+		cin>>pr[i].ET;
+		cin>>pr[i].sym;
+	}
+}
+void sort(node *pr,int n)
+{
+    int i,j;
+	 struct node temp;
+	for(i=1;i<n;i++)
+	{
+	for(j=0;j<i;j++)
+	{	
+		if(pr[i].ET<pr[j].ET)
+		{
+			temp=pr[j];
+			pr[j]=pr[i];
+			pr[i]=temp;
+		}
+	}
+    }    
+}
+float calc(node *pr,int n)
+{
+  float sum[n]={0},avgTAT=0,avg;
+  int i,j;
+  pr[0].WT=0;
+  for(i=1;i<n;i++)
+  {
+  	for (j=0;j<i;j++)
+  	{
+	 sum[i]=sum[i]+pr[j].ET;
+	}
+  }
+  
+  for(i=0;i<n;i++)
+  {
+  	pr[i].WT=sum[i];
+  	pr[i].TAT=pr[i].ET+pr[i].WT;
+  } 
+  for(i=0;i<n;i++)
+  {
+  	avgTAT=avgTAT+pr[i].TAT;
+  }
+  avg=(avgTAT/n);
+  return avg;	
+}
+void display(node *pr,int n,float avgTAT)
+{
+	int i;
+	cout<<"\t\t"<<"Arrival Time"<<"\t"<<"Execution time"<<"\t"<<"Waiting time"<< "\t"<<"Turn around Time"<<endl;
+	for(i=0;i<n;i++)
+	{
+	cout<<pr[i].sym<<"\t\t"<<pr[i].AT<<"\t\t"<<pr[i].ET<<"\t\t"<<pr[i].WT<<"\t\t"<<pr[i].TAT<<endl;
+    }
+    cout<<"\n"<<"\t"<<"Average turn around time="<<avgTAT<<endl;
+}

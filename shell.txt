@@ -1,0 +1,92 @@
+fact(0
+[
+y=1
+for((i=1;i<temp;i++))
+do
+((y=y*i))
+done
+}
+
+echo"Enter number"
+read r
+sum=0
+rr=$r
+while((r!=0))
+do
+((temp=r%10))
+#fact $temp
+f=$y
+echo"temp=$temp"
+((r=r/10))
+echo"	tr/10=$r"
+
+fact $temp
+((sum=sum+y))
+echo"Sum"
+done
+if((rr=sum))
+then
+echo"No. is strong"
+else
+echo"No. is not strong"
+fi
+fact()
+{echo"Hello Shri"
+}
+
+
+cd
+cd Desktop
+mkdir 3552
+cd 3552
+touch file.sh
+gedit file.sh
+
+
+
+echo "Enter no.1="
+read a
+echo "Enter no.2="
+read b
+
+((c=$a+$b))
+echo "Sum of 2 no.s=$c"
+
+((d=$a-$b))
+echo "Sub of 2 no.s=$d"
+
+((e=$a*$b))
+echo "Mul of 2 no.s=$e"
+
+((f=$a/$b))
+echo "Div of 2 no.s=$f"
+
+
+#for loop program
+#***print no.s from 1 to 10***
+
+for((i=0;i<10;i++))
+do
+echo"Si"
+done
+
+
+#if-else condition
+
+echo"Entr a number"
+read n
+if(($n>=52))
+echo"Entered no. is greater than 52"
+else
+echo"Entered no. is smaller than 52"
+fi
+
+#while condition
+#***print sum upto 10***
+
+i=1
+while((i=10))
+do
+echo"$i"
+((i=$i+1))
+Done

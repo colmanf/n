@@ -1,0 +1,23 @@
+#include<stdio.h>
+void main()
+{
+pid_t a;
+a=fork();
+if(a==0)
+Childprocess();
+else
+Parentprocess();
+}
+void Childprocess()
+{
+int i;
+for(i=0;i<10;i++)
+printf("This is child line%d\n",a);
+printf("***CHILD PROCESS DONE***");
+}
+void Parentprocess()
+{
+int i;
+for(i=0;i<10;i++)
+printf("This is parent line%d\n",a);
+printf("***PARENT PROCESS DONE***");

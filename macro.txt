@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<string.h>
+
+void main()
+{	
+	FILE *fp1,*fp2,*fp3;
+	char str[10],ch;
+	
+	fp1=fopen("macro.asm","r");
+	fp2=fopen("MNT.txt","w");
+	fp3=fopen("MDT.txt","w");
+	printf("starting program\n");
+	while(!feof(fp1)) 	{
+		//MNT
+		fscanf(fp1,"%s",str);
+		if(strcmp(str,"MACRO")==0)
+		{
+			fscanf(fp1,"%s",str);
+			fprintf(fp2,"%s",str);
+		}
+		//MDT
+		fscanf(fp1,"%s",str);
+		while(strcmp(str,"MEND")!=0)
+		{
+		fprintf(fp3,"%s",str);
+		ch=fgetc(fp1);
+		fputc(ch,fp3);
+		fscanf(fp1,"%s",str);
+		}
+	}
+}
+
+.asm File-
+MACRO
+ADDITION4
+INC AREG
+INC AREG
+INC AREG
+MEND
+
+MDT.txt File
+INC AREG
+INC AREG
+INC AREG
+
+MNT.txt
